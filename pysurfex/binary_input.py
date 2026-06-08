@@ -335,11 +335,13 @@ class InputDataFromNamelist(JsonInputData):
         start = string.find("{")
         end = string.find("}")
         substring = string[start + 1 : end] if start >= 0 and end >= 0 else string
-        nam_section = substring.split(sep)[0]
-        nam_key = substring.split(sep)[1]
-        value = InputDataFromNamelist.get_nml_value(
-            nml, nam_section, nam_key, indices=indices
-        )
+        value = substring
+        if substring.find(sep) > 0:
+            nam_section = substring.split(sep)[0]
+            nam_key = substring.split(sep)[1]
+            value = InputDataFromNamelist.get_nml_value(
+                nml, nam_section, nam_key, indices=indices
+            )
         result = value
         if start >= 0 and end >= 0:
             result = string[: start + 1] + value + string[end:]
