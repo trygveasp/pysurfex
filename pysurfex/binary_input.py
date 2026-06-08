@@ -334,7 +334,7 @@ class InputDataFromNamelist(JsonInputData):
         """
         start = string.find("{")
         end = string.find("}")
-        substring = string[start+1:end] if start >= 0 and end >= 0 else string
+        substring = string[start + 1 : end] if start >= 0 and end >= 0 else string
         nam_section = substring.split(sep)[0]
         nam_key = substring.split(sep)[1]
         value = InputDataFromNamelist.get_nml_value(
@@ -342,7 +342,7 @@ class InputDataFromNamelist(JsonInputData):
         )
         result = value
         if start >= 0 and end >= 0:
-            result = string[:start+1] + value + string[end:]
+            result = string[: start + 1] + value + string[end:]
             result = result.replace("{", "")
             result = result.replace("}", "")
         return result
